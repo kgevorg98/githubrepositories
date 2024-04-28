@@ -1,0 +1,32 @@
+package com.mycomp.githubrepositories.presentation.utils
+
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
+
+class DownloadReceiver() : BroadcastReceiver() {
+
+    private var callback: DownloadCallback? = null
+
+    fun registerCallback(callback: DownloadCallback) {
+        this.callback = callback
+    }
+
+    interface DownloadCallback {
+        fun onDownloadComplete()
+        fun onFailDownload()
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent?.action == "android.intent.action.DOWNLOAD_COMPLETE") {
+            val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L)
+            if (id != -1L) {
+                callback?.onDownloadComplete()
+            } else {
+                callback?.onFailDownload()
+            }
+        }
+    }
+}

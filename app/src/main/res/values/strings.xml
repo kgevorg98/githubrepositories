@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Github Repositories</string>
+    <string name="downloads">Downloads</string>
+    <string name="type_a_user_name">Type a user name</string>
+    <string name="successful_download">Repository Downloaded successfully!</string>
+    <string name="failed_download">Something went wrong. Please try again</string>
+    <string name="github_repository_client">Github Repository Client</string>
+    <string name="no_repositories_found_by_this_name">No repositories found by this name</string>
+</resources>
