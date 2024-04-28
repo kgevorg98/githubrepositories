@@ -10,7 +10,7 @@ class HeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val newRequest = originalRequest.newBuilder()
-            .addHeader("Authorization", "Bearer ${BuildConfig.AUTH_TOKEN}")
+           // .addHeader("Authorization", "Bearer ${BuildConfig.AUTH_TOKEN}")
             .build()
         return chain.proceed(newRequest)
     }

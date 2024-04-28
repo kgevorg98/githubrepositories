@@ -24,7 +24,7 @@ class ZipDownloader(
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setTitle("${urlPart.substringAfterLast("/")}.zip")
-            .addRequestHeader("Authorization", BuildConfig.AUTH_TOKEN)
+            //.addRequestHeader("Authorization", BuildConfig.AUTH_TOKEN)
             .setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,
                 urlPart.substringAfterLast("/")
