@@ -6,4 +6,5 @@
     <string name="failed_download">Something went wrong. Please try again</string>
     <string name="github_repository_client">Github Repository Client</string>
     <string name="no_repositories_found_by_this_name">No repositories found by this name</string>
+    <string name="no_network_connection">You are offline! Please check your internet connection </string>
 </resources>

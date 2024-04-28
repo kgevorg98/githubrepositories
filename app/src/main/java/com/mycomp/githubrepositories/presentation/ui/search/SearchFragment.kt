@@ -22,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mycomp.githubrepositories.R
 import com.mycomp.githubrepositories.databinding.FragmentSearchBinding
+import com.mycomp.githubrepositories.presentation.extensions.isNetWorkAvailable
 import com.mycomp.githubrepositories.presentation.ui.search.adapter.ReposAdapter
 import com.mycomp.githubrepositories.presentation.utils.DownloadReceiver
 import com.mycomp.githubrepositories.presentation.utils.ZipDownloader
@@ -79,10 +80,15 @@ class SearchFragment : Fragment(), DownloadReceiver.DownloadCallback {
     private fun setEditTextListener() {
         binding.search.editText.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    viewModel.getGithubReposByUserName(userName = v.text.toString()).collectLatest {
-                        reposAdapter.submitData(it)
+                if (isNetWorkAvailable()) {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewModel.getGithubReposByUserName(userName = v.text.toString())
+                            .collectLatest {
+                                reposAdapter.submitData(it)
+                            }
                     }
+                } else {
+                    makeToast(R.string.no_network_connection)
                 }
                 true
             }
